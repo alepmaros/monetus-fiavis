@@ -99,3 +99,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+
+# db
+monetus_fiavis/db.sqlite3
+monetus_fiavis/fiavis/migrations/*.py

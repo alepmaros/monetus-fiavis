@@ -1,0 +1,5 @@
+alpha-vantage==1.8.0
+Django==2.0.1
+pkg-resources==0.0.0
+pytz==2017.3
+simplejson==3.13.2

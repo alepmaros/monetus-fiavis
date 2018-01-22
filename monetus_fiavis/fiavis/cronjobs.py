@@ -13,23 +13,21 @@ class UpdateStocksInformation(CronJobBase):
     code = 'fiavis.update_stocks_information'
 
     def do(self):
-
         time = datetime.now(tz=pytz.timezone("America/Sao_Paulo"))
 
-        print(time)
         if ( time.hour < 9 or time.hour > 19 ):
             return
 
         stocks = get_all_stocks()
         for s in stocks['stocks']:
             if (s['status']['valid'] == 0):
-                s_code = s['code']
-                s_share = float(s['share'])
-                s_op = float(s['status']['op'])
-                s_hi = float(s['status']['hi'])
-                s_lo = float(s['status']['lo'])
-                s_cp = float(s['status']['cp'])
-                s_l  = float(s['status']['l'])
+                s_code  = s['code']
+                s_share = s['share']
+                s_op = s['status']['op']
+                s_hi = s['status']['hi']
+                s_lo = s['status']['lo']
+                s_cp = s['status']['cp']
+                s_l  = s['status']['l']
 
                 stock = Stock(code=s_code, time=time, vcp=s_cp,
                     vopen = s_op, vhigh = s_hi, vlow = s_lo,

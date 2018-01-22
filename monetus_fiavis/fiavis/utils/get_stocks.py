@@ -1,8 +1,10 @@
 import json, requests, simplejson
+import os
 from pprint import pprint
 
-def get_stocks():
-    companies = json.load(open('stocks.json'))
+def get_all_stocks():
+    f = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    companies = json.load(open(f + '/utils/stocks.json'))
 
     for x in range(0, len(companies['stocks'])):
         companystatus = get_company_status(companies['stocks'][x]['code'])
@@ -26,7 +28,8 @@ def get_company_status(company):
                 'cp': float(company_data['cp']) / 100,
                 'l': float(company_data['l']),
                 'op': float(company_data['op']),
-                'hi': float(company_data['hi'])
+                'hi': float(company_data['hi']),
+                'lo': float(company_data['lo'])
             }
 
         except:

@@ -37,7 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_cron",
     'fiavis.apps.FiavisConfig',
+]
+
+CRON_CLASSES = [
+    "fiavis.cronjobs.UpdateStocksInformation",
 ]
 
 MIDDLEWARE = [

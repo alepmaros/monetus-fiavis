@@ -1,14 +1,17 @@
 from django.db import models
 
-class Acoes(models.Model):
+class Stock(models.Model):
     """
     Modelo das ações
     """
 
-    codigo = models.CharField(max_length=10)
-    hora   = models.DateTimeField(blank=False, null=False)
+    code   = models.CharField(max_length=10)
+    time   = models.DateTimeField(blank=False, null=False)
 
-    vopen   = models.DecimalField(max_digits = 7, decimal_places = 4)
-    vhigh   = models.DecimalField(max_digits = 7, decimal_places = 4)
-    vlow    = models.DecimalField(max_digits = 7, decimal_places = 4)
-    vclose  = models.DecimalField(max_digits = 7, decimal_places = 4)
+    vcp     = models.FloatField(blank=False, null=False)
+    vopen   = models.FloatField(blank=False, null=False)
+    vhigh   = models.FloatField(blank=False, null=False)
+    vlow    = models.FloatField(blank=False, null=False)
+    vclose  = models.FloatField(blank=False, null=False)
+
+    fshare  = models.FloatField(blank=False, null=False)

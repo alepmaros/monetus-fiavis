@@ -6,12 +6,14 @@ def get_stocks():
 
     for x in range(0, len(companies['stocks'])):
         companystatus = get_company_status(companies['stocks'][x]['code'])
-        companies['stocks'][x]['status'] = companystatus
+
+        if (companystatus !== 100 or companystatus !== 200):
+            companies['stocks'][x]['status'] = companystatus
 
     return (companies)
 
-# retorna 1 se uma ação específica retornou erro
-# retorna 2 se houve erro no retorno da API
+# retorna 100 se uma ação específica retornou erro
+# retorna 200 se houve erro no retorno da API
 def get_company_status(company):
     rsp = requests.get('https://finance.google.com/finance?q=' + company + '&output=json')
     
@@ -21,6 +23,6 @@ def get_company_status(company):
         if ('cp' in company_data):
             return (float(company_data['cp']) / 100)
         else:
-            return 1
+            return 100
     else:
-        return 2
+        return 200

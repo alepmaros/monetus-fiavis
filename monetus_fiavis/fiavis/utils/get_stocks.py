@@ -25,7 +25,7 @@ def get_company_status(company):
 
             response = {
                 'valid': 0,
-                'cp': float(company_data['cp']) / 100,
+                'cp': float(company_data['cp']),
                 'l': float(company_data['l']),
                 'op': float(company_data['op']),
                 'hi': float(company_data['hi']),

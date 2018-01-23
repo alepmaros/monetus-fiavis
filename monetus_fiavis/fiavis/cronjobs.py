@@ -1,4 +1,5 @@
 from django_cron import CronJobBase, Schedule
+from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime
 import pytz
 
@@ -13,9 +14,9 @@ class UpdateStocksInformation(CronJobBase):
     code = 'fiavis.update_stocks_information'
 
     def do(self):
-        time = datetime.now(tz=pytz.timezone("America/Sao_Paulo"))
+        time_now = datetime.now(tz=pytz.timezone("America/Sao_Paulo"))
 
-        if ( time.hour < 9 or time.hour > 19 ):
+        if ( time_now.hour < 11 or time_now.hour > 19 ):
             return
 
         stocks = get_all_stocks()
@@ -28,8 +29,19 @@ class UpdateStocksInformation(CronJobBase):
                 s_lo = s['status']['lo']
                 s_cp = s['status']['cp']
                 s_l  = s['status']['l']
-
-                stock = Stock(code=s_code, time=time, vcp=s_cp,
-                    vopen = s_op, vhigh = s_hi, vlow = s_lo,
-                    vclose = s_l, fshare = s_share)
-                stock.save()
+                
+                # If the entry already exists, update it; otherwise create a new one
+                try:
+                    stock = Stock.objects.get(code=s_code, time__startswith=time_now.date())
+                    stock.fshare = s_share
+                    stock.time   = time_now
+                    stock.vopen  = s_open
+                    stock.vhigh  = s_hi
+                    stock.vlow   = s_lo
+                    stock.vclose = s_l
+                    stock.save()
+                except ObjectDoesNotExist:
+                    stock = Stock(code=s_code, time=time_now, vcp=s_cp,
+                        vopen = s_op, vhigh = s_hi, vlow = s_lo,
+                        vclose = s_l, fshare = s_share)
+                    stock.save()

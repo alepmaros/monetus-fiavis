@@ -15,3 +15,6 @@ class Stock(models.Model):
     vclose  = models.FloatField(blank=False, null=False)
 
     fshare  = models.FloatField(blank=False, null=False)
+
+    class Meta:
+        ordering = ['-time', '-fshare']

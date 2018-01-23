@@ -104,3 +104,4 @@ ENV/
 # db
 monetus_fiavis/db.sqlite3
 monetus_fiavis/fiavis/migrations/*.py
+!monetus_fiavis/fiavis/migrations/__init__.py

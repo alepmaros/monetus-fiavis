@@ -13,8 +13,13 @@ def index_fiavis(request):
     last_day_updated = Day.objects.filter(updated=True).order_by('time')[0]
     last_stocks_updated = Stock.objects.filter(day__time__startswith=last_day_updated.time.date())
 
-    stocks = Stock.objects.all()
-    stocks_json = serializers.serialize('json', stocks)
+    all_days = Day.objects.all()
+    all_stocks = Stock.objects.all()
 
-    return render(request, 'fiavis/index.html', {'last_day_updated'   : last_day_updated,
-                                                 'last_stocks_updated': last_stocks_updated})
+    all_days_json = serializers.serialize('json', all_days)
+    all_stocks_json = serializers.serialize('json', all_stocks)
+
+    return render(request, 'fiavis/index.html', {'all_days'   : all_days_json,
+                                                 'all_stocks' : all_stocks_json,
+                                                 'last_stocks_updated'   : last_stocks_updated,
+                                                 'last_day_updated'      : last_day_updated})

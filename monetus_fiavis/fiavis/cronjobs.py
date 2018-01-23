@@ -41,9 +41,9 @@ class UpdateStocksInformation(CronJobBase):
                 
                 # If the entry already exists, update it; otherwise create a new one
                 try:
+                    print('a?')
                     stock = Stock.objects.get(code=s_code, day__time__startswith=time_now.date())
                     stock.fshare = s_share
-                    stock.time   = time_now
                     stock.vopen  = s_op
                     stock.vhigh  = s_hi
                     stock.vlow   = s_lo

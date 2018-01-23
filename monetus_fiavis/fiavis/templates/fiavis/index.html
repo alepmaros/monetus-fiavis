@@ -2,4 +2,19 @@
     var stocks = {{ stocks | safe }}
 </script>
 
-<h1>Oi {{ variavel }}</h1>
+<h1>Oi {{ fcp }}</h1>
+
+<table>
+    <tr>
+        <th>Código</th>
+        <th>Porcentagem fundo</th>
+        <th>Valorizacao</th>
+    </tr>
+    {% for stockinst in stocks_today  %}
+    <tr>
+        <td>{{ stockinst.code }}</td>
+        <td>{{ stockinst.fshare }}</td>
+        <td>{{ stockinst.vcp }}</td>
+    </tr>
+    {% endfor %}
+</table> 

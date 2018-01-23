@@ -23,10 +23,10 @@ class UpdateStocksInformation(CronJobBase):
         try:
             day = Day.objects.get(time__startswith=time_now.date())
             day.time = time_now
-            day.save()
         except ObjectDoesNotExist:
             day = Day(time=time_now)
-            day.save()
+        day.save()
+            
 
         stocks = get_all_stocks()
         for s in stocks['stocks']:
@@ -41,25 +41,26 @@ class UpdateStocksInformation(CronJobBase):
                 
                 # If the entry already exists, update it; otherwise create a new one
                 try:
-                    print('a?')
                     stock = Stock.objects.get(code=s_code, day__time__startswith=time_now.date())
                     stock.fshare = s_share
                     stock.vopen  = s_op
                     stock.vhigh  = s_hi
                     stock.vlow   = s_lo
                     stock.vclose = s_l
-                    stock.save()
+                    stock.vcp    = s_cp
                 except ObjectDoesNotExist:
                     stock = Stock(code=s_code, vcp=s_cp,
                         vopen = s_op, vhigh = s_hi, vlow = s_lo,
                         vclose = s_l, fshare = s_share, day=day)
-                    stock.save()
+                stock.save()
+
+        
 
         # Update vcp for that day
         if Stock.objects.filter(day=day).count() > 0:
             vcp = 0.0
             for stock in Stock.objects.filter(day=day):
-                vcp += stock.vcp * stock.fshare
+                vcp += stock.vcp * (stock.fshare / 100.0)
 
             day.vcp = vcp
             day.updated = True

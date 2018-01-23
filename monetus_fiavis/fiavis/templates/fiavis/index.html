@@ -2,7 +2,7 @@
     var stocks = {{ stocks | safe }}
 </script>
 
-<h1>Oi {{ fcp }}</h1>
+<h1>Oi {{ last_day_updated.vcp }}</h1>
 
 <table>
     <tr>
@@ -10,11 +10,13 @@
         <th>Porcentagem fundo</th>
         <th>Valorizacao</th>
     </tr>
-    {% for stockinst in stocks_today  %}
+    {% for stockinst in last_stocks_updated  %}
     <tr>
         <td>{{ stockinst.code }}</td>
         <td>{{ stockinst.fshare }}</td>
         <td>{{ stockinst.vcp }}</td>
     </tr>
     {% endfor %}
-</table> 
+</table>
+
+Ultima vez atualizado há {{ last_day_updated.time | timesince }}

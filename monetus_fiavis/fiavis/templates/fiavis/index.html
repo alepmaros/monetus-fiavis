@@ -14,11 +14,10 @@
     <!-- Custom styles for this template -->
     {% load static %}
     <link href="{% static "fiavis/css/style.css" %}" rel="stylesheet">
-
+    {{ all_days | safe }}
     <script>
         var all_days = {{ all_days | safe }}
         var all_stocks = {{ all_stocks | safe }}
-        console.log(all_days)
     </script>
     
   </head>

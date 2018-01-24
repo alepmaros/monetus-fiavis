@@ -34,3 +34,6 @@ class Stock(models.Model):
 
     class Meta:
         ordering = ['-fshare']
+
+    def __str__(self):
+        return 'code: %s, vcp: %s' % (self.code, self.vcp)

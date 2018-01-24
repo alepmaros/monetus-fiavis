@@ -9,16 +9,15 @@
         var fiaData = [];
         
         all_days.forEach(element => {
-            console.log(typeof new Date(element.fields.time))
-            d = new Date(element.fields.time)
+            console.log(typeof new Date(element.day))
+            d = new Date(element.day)
             d.setHours(0,0,0,0)
             fiaData.push({
                 "date": d,
-                "value": element.fields.vcp
+                "value": element.vcp
             });
         });
         
-        fiaData = fiaData.reverse();
         
         
         var chart = AmCharts.makeChart( "chartdiv", {

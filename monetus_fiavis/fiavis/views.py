@@ -15,7 +15,7 @@ def index_fiavis(request):
     last_day_updated = Day.objects.filter(updated=True).order_by('-time')[0]
     last_stocks_updated = Stock.objects.filter(day__time__startswith=last_day_updated.time.date())
 
-    all_days = Day.objects.all().order_by('time')
+    all_days = Day.objects.all().prefetch_related('stock_set').order_by('time')
     all_stocks = all_days[2].stock_set.all()
     all_days_object = []
     for d in all_days:

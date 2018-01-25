@@ -17,7 +17,7 @@ class UpdateStocksInformation(CronJobBase):
 
         time_now = datetime.now(tz=pytz.timezone("America/Sao_Paulo"))
 
-        if ( time_now.hour < 11 or time_now.hour > 19 ):
+        if ( time_now.hour < 11 or time_now.hour > 19 or time_now.isoweekday() >= 6 ):
             return
 
         try:

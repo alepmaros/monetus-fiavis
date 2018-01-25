@@ -22,7 +22,13 @@
   </head>
 
   <body>
+    <div id="monetus-box">
+          <a id="topright">Esse site não tem vínculo com a empresa Monetus</a>
+          <h1 class="display-4">Valorização: {{ last_day_updated.vcp }}</h1>
+          
+    </div>
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        
         <div id="accordion" role="tablist" aria-multiselectable="true">
             <div class="card">
               <div class="card-header" role="tab" id="heading">
@@ -97,17 +103,18 @@
         </div>
       </footer>
     </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small border-top">
+      <a>Feito por <a href="https://github.com/alepmaros">Alexandre Maros</a> e <a href="https://github.com/Dayrell">Fábio Dayrell</a></a>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="https://github.com/alepmaros/monetus-fiavis">Código Fonte</a></li>
+        <li class="list-inline-item"><a href="http://monetus.com.br/">Monetus</a></li>
+      </ul>
+    </footer>
     
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script>
-      Holder.addTheme('thumb', {
-        bg: '#55595c',
-        fg: '#eceeef',
-        text: 'Thumbnail'
-      });
-    </script>
 
     <!-- chart -->
     {% include "fiavis/chart.html" %}

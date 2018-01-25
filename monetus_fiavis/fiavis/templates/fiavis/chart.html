@@ -27,7 +27,7 @@ var data = []
 all_days.forEach(element => {
   d = new Date(element.day)
   d.setHours(0, 0, 0, 0)
-  fiaData.push([toTimestamp(d), element.vcp]);
+  fiaData.push([(d).getTime(), element.vcp]);
 
   element.stocks.forEach(stockslist => {
     flag = search(stockslist.fields.code, stocks, d, stockslist.fields.vcp)
@@ -59,7 +59,7 @@ stocks.forEach(stock => {
   var stockArray = []
 
   stock.series.forEach(day => {
-    stockArray.push([toTimestamp(day.date),day.vcp])
+    stockArray.push([(day.date).getTime(),day.vcp])
   })
 
   data.push({
@@ -98,7 +98,7 @@ function createChart() {
         },
 
         tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}%</b><br/>',
             valueDecimals: 2,
             split: true
         },

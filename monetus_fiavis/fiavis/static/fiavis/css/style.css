@@ -31,11 +31,11 @@ html {
 
   #monetus-box {
     background-color: #0047bb;
-    height: 10em;
+    height: 12.5em;
     
   }
 
-  #monetus-box h1 {
+  #monetus-box h1, #monetus-box p {
     text-align: center;
     padding-top: 0.8em;
     color: white;

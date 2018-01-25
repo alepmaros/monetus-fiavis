@@ -12,9 +12,11 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
 
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
-    re_path(r'^$', include('fiavis.urls')),
+    path('', RedirectView.as_view(url='monetus/')),
+    path('monetus/', include('fiavis.urls')),
     path('admin/', admin.site.urls),
 ]
 

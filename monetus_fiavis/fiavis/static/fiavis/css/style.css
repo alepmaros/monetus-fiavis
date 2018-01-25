@@ -28,3 +28,20 @@ html {
     width: 100%;
     height: 500px;
   }
+
+  #monetus-box {
+    background-color: #0047bb;
+    height: 10em;
+    
+  }
+
+  #monetus-box h1 {
+    text-align: center;
+    padding-top: 0.8em;
+    color: white;
+  }
+
+  #topright {
+    float:right;
+    color: white;
+  }

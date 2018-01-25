@@ -1,13 +1,8 @@
-<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-<script src="https://www.amcharts.com/lib/3/serial.js"></script>
-<script src="https://www.amcharts.com/lib/3/amstock.js"></script>
-<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-{% load static %}
-<link href="{% static "fiavis/js/responsive.min.js" %}" rel="stylesheet">
-<script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 
+<script>
 function search(nameKey, myArray, date, vcp) {
   for (var i = 0; i < myArray.length; i++) {
     if (myArray[i].code == nameKey) {
@@ -20,17 +15,19 @@ function search(nameKey, myArray, date, vcp) {
   }
   return 1;
 }
+function toTimestamp(strDate){
+   var datum = Date.parse(strDate);
+   return datum/1000;
+}
 
 var fiaData = [];
 var stocks = []
+var data = []
 
 all_days.forEach(element => {
   d = new Date(element.day)
   d.setHours(0, 0, 0, 0)
-  fiaData.push({
-    "date": d,
-    "value": element.vcp
-  });
+  fiaData.push([toTimestamp(d), element.vcp]);
 
   element.stocks.forEach(stockslist => {
     flag = search(stockslist.fields.code, stocks, d, stockslist.fields.vcp)
@@ -48,110 +45,78 @@ all_days.forEach(element => {
   })
 });
 
-dataSets = []
-dataSets.push({
-  "title": "Monetus FIA",
-  "fieldMappings": [{
-    "fromField": "value",
-    "toField": "value"
-  }, {
-    "fromField": "volume",
-    "toField": "volume"
-  }],
-  "dataProvider": fiaData,
-  "categoryField": "date"
+data.push({
+  "name": "Monetus FIA",
+  "data": fiaData
 })
 
-stocks.forEach(element => {
-  stock = []
-  element.series.forEach(day => {
-    d = new Date(day.date)
-    d.setHours(0, 0, 0, 0)
-    stock.push({
-      "date": d,
-      "value": day.vcp
-    })
+console.log(data)
+console.log('\n\n\n')
+
+console.log(stocks)
+
+stocks.forEach(stock => {
+  var stockArray = []
+
+  stock.series.forEach(day => {
+    stockArray.push([toTimestamp(day.date),day.vcp])
   })
-  dataSets.push({
-    "title": element.code,
-    "fieldMappings": [{
-      "fromField": "value",
-      "toField": "value"
-    }, {
-      "fromField": "volume",
-      "toField": "volume"
-    }],
-    "dataProvider": stock,
-    "categoryField": "date"
+
+  data.push({
+    "name": stock.code,
+    "data": stockArray
   })
 })
-console.log(dataSets)
-var chart = AmCharts.makeChart("chartdiv", {
-  "responsive": {
-    "enabled": true
-  },
-  "type": "stock",
-  "theme": "light",
-  "dataSets": dataSets,
 
-  "panels": [{
-    "recalculateToPercents":"never",
-    "showCategoryAxis": true,
-    "title": "Value",
-    "percentHeight": 100,
-    "stockGraphs": [{
-      "id": "g1",
-      "valueField": "value",
-      "comparable": true,
-      "compareField": "value",
-      "balloonText": "[[title]]:<b>[[value]]</b>",
-      "compareGraphBalloonText": "[[title]]:<b>[[value]]</b>"
-    }],
-    "stockLegend": {
-      "periodValueTextComparing": "[[percents.value.close]]%",
-      "periodValueTextRegular": "[[value.close]]"
-    }
-  }],
+var seriesOptions = [],
+    seriesCounter = 0,
+    names = ['Monetus FIA'];
 
-  "chartScrollbarSettings": {
-    "graph": "g1"
-  },
+/**
+ * Create the chart when all data is loaded
+ * @returns {undefined}
+ */
+function createChart() {
 
-  "chartCursorSettings": {
-    "valueBalloonsEnabled": true,
-    "fullWidth": true,
-    "cursorAlpha": 0.1,
-    "valueLineBalloonEnabled": true,
-    "valueLineEnabled": true,
-    "valueLineAlpha": 0.5
-  },
+    Highcharts.stockChart('container', {
 
-  "periodSelector": {
-    "position": "left",
-    "periods": [{
-      "period": "MM",
-      "selected": true,
-      "count": 1,
-      "label": "1 month"
-    }, {
-      "period": "YYYY",
-      "count": 1,
-      "label": "1 year"
-    }, {
-      "period": "YTD",
-      "label": "YTD"
-    }, {
-      "period": "MAX",
-      "label": "MAX"
-    }]
-  },
+        rangeSelector: {
+            selected: 4
+        },
 
-  "dataSetSelector": {
-    "position": "left"
-  },
+        yAxis: {
+            labels: {
+                formatter: function () {
+                    return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                }
+            },
+            plotLines: [{
+                value: 0,
+                width: 2,
+                color: 'silver'
+            }]
+        },
 
-  "export": {
-    "enabled": true
+        tooltip: {
+            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+            valueDecimals: 2,
+            split: true
+        },
+
+        series: seriesOptions
+    });
+}
+
+$.each(data, function (i, name) {
+
+  seriesOptions[i] = {
+      name: data[i].name,
+      data: data[i].data
+  };
+  seriesCounter += 1;
+
+  if (seriesCounter === data.length) {
+      createChart();
   }
 });
 </script>

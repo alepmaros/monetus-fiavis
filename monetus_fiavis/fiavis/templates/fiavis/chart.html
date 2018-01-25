@@ -6,106 +6,158 @@
 <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
 <script>
-        var fiaData = [];
-        
-        all_days.forEach(element => {
-            console.log(typeof new Date(element.day))
-            d = new Date(element.day)
-            d.setHours(0,0,0,0)
-            fiaData.push({
-                "date": d,
-                "value": element.vcp
-            });
-        });
-        
-        
-        
-        var chart = AmCharts.makeChart( "chartdiv", {
-          "type": "stock",
-          "theme": "light",
-          "dataSets": [ {
-              "title": "Monetus FIA",
-              "fieldMappings": [ {
-                "fromField": "value",
-                "toField": "value"
-              }, {
-                "fromField": "volume",
-                "toField": "volume"
-              } ],
-              "dataProvider": fiaData,
-              "categoryField": "date"
-            }
-          ],
-        
-          "panels": [ {
-            "showCategoryAxis": false,
-            "title": "Value",
-            "percentHeight": 70,
-            "stockGraphs": [ {
-              "id": "g1",
-              "valueField": "value",
-              "comparable": true,
-              "compareField": "value",
-              "balloonText": "[[title]]:<b>[[value]]</b>",
-              "compareGraphBalloonText": "[[title]]:<b>[[value]]</b>"
-            } ],
-            "stockLegend": {
-              "periodValueTextComparing": "[[percents.value.close]]%",
-              "periodValueTextRegular": "[[value.close]]"
-            }
-          }, {
-            "title": "Volume",
-            "percentHeight": 30,
-            "stockGraphs": [ {
-              "valueField": "volume",
-              "type": "column",
-              "showBalloon": false,
-              "fillAlphas": 1
-            } ],
-            "stockLegend": {
-              "periodValueTextRegular": "[[value.close]]"
-            }
-          } ],
-        
-          "chartScrollbarSettings": {
-            "graph": "g1"
-          },
-        
-          "chartCursorSettings": {
-            "valueBalloonsEnabled": true,
-            "fullWidth": true,
-            "cursorAlpha": 0.1,
-            "valueLineBalloonEnabled": true,
-            "valueLineEnabled": true,
-            "valueLineAlpha": 0.5
-          },
-        
-          "periodSelector": {
-            "position": "left",
-            "periods": [ {
-              "period": "MM",
-              "selected": true,
-              "count": 1,
-              "label": "1 month"
-            }, {
-              "period": "YYYY",
-              "count": 1,
-              "label": "1 year"
-            }, {
-              "period": "YTD",
-              "label": "YTD"
-            }, {
-              "period": "MAX",
-              "label": "MAX"
-            } ]
-          },
-        
-          "dataSetSelector": {
-            "position": "left"
-          },
-        
-          "export": {
-            "enabled": true
-          }
-        } );
-        </script>
+  function search(nameKey, myArray, date, vcp) {
+    for (var i = 0; i < myArray.length; i++) {
+      if (myArray[i].code == nameKey) {
+        myArray[i].series.push({
+          "date": d,
+          "vcp": vcp
+        })
+        return myArray
+      }
+    }
+    return 1;
+  }
+
+  var fiaData = [];
+  var stocks = []
+
+  all_days.forEach(element => {
+    d = new Date(element.day)
+    d.setHours(0, 0, 0, 0)
+    fiaData.push({
+      "date": d,
+      "value": element.vcp
+    });
+
+    element.stocks.forEach(stockslist => {
+      flag = search(stockslist.fields.code, stocks, d, stockslist.fields.vcp)
+      if (flag === 1) {
+        stocks.push({
+          "code": stockslist.fields.code,
+          "series": [{
+            "date": d,
+            "vcp": stockslist.fields.vcp
+          }]
+        })
+      } else {
+        stocks = flag
+      }
+    })
+  });
+
+  dataSets = []
+  dataSets.push({
+    "title": "Monetus FIA",
+    "fieldMappings": [{
+      "fromField": "value",
+      "toField": "value"
+    }, {
+      "fromField": "volume",
+      "toField": "volume"
+    }],
+    "dataProvider": fiaData,
+    "categoryField": "date"
+  })
+
+  stocks.forEach(element => {
+    stock = []
+    element.series.forEach(day => {
+      d = new Date(day.date)
+      d.setHours(0, 0, 0, 0)
+      stock.push({
+        "date": d,
+        "value": day.vcp
+      })
+    })
+    dataSets.push({
+      "title": element.code,
+      "fieldMappings": [{
+        "fromField": "value",
+        "toField": "value"
+      }, {
+        "fromField": "volume",
+        "toField": "volume"
+      }],
+      "dataProvider": stock,
+      "categoryField": "date"
+    })
+  })
+
+  var chart = AmCharts.makeChart("chartdiv", {
+    "type": "stock",
+    "theme": "light",
+    "dataSets": dataSets,
+
+    "panels": [{
+      "showCategoryAxis": false,
+      "title": "Value",
+      "percentHeight": 70,
+      "stockGraphs": [{
+        "id": "g1",
+        "valueField": "value",
+        "comparable": true,
+        "compareField": "value",
+        "balloonText": "[[title]]:<b>[[value]]</b>",
+        "compareGraphBalloonText": "[[title]]:<b>[[value]]</b>"
+      }],
+      "stockLegend": {
+        "periodValueTextComparing": "[[percents.value.close]]%",
+        "periodValueTextRegular": "[[value.close]]"
+      }
+    }, {
+      "title": "Volume",
+      "percentHeight": 30,
+      "stockGraphs": [{
+        "valueField": "volume",
+        "type": "column",
+        "showBalloon": false,
+        "fillAlphas": 1
+      }],
+      "stockLegend": {
+        "periodValueTextRegular": "[[value.close]]"
+      }
+    }],
+
+    "chartScrollbarSettings": {
+      "graph": "g1"
+    },
+
+    "chartCursorSettings": {
+      "valueBalloonsEnabled": true,
+      "fullWidth": true,
+      "cursorAlpha": 0.1,
+      "valueLineBalloonEnabled": true,
+      "valueLineEnabled": true,
+      "valueLineAlpha": 0.5
+    },
+
+    "periodSelector": {
+      "position": "left",
+      "periods": [{
+        "period": "MM",
+        "selected": true,
+        "count": 1,
+        "label": "1 month"
+      }, {
+        "period": "YYYY",
+        "count": 1,
+        "label": "1 year"
+      }, {
+        "period": "YTD",
+        "label": "YTD"
+      }, {
+        "period": "MAX",
+        "label": "MAX"
+      }]
+    },
+
+    "dataSetSelector": {
+      "position": "left"
+    },
+
+    "export": {
+      "enabled": true
+    }
+  });
+</script>

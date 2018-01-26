@@ -12,10 +12,8 @@
 
   <title>Monetus FIA: Histórico (Não Oficial)</title>
 
-  <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <!-- Custom styles for this template -->
   {% load static %}
   <link href="{% static "fiavis/css/style.css" %}" rel="stylesheet">
 
@@ -94,7 +92,6 @@
         if (document.getElementById("_RAPT4").checked) { selected_charts.push('RAPT4') }
         if (document.getElementById("_PTBL3").checked) { selected_charts.push('PTBL3') }
         if (document.getElementById("_SMLS3").checked) { selected_charts.push('SMLS3') }
-        console.log(selected_charts)
         recreateChart(selected_charts);
       }
     </script>

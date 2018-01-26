@@ -1,74 +1,148 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Monetus FIA: Histórico</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>Monetus FIA: Histórico (Não Oficial)</title>
 
-    <!-- Custom styles for this template -->
-    {% load static %}
-    <link href="{% static "fiavis/css/style.css" %}" rel="stylesheet">
-    
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  {% load static %}
+  <link href="{% static "fiavis/css/style.css" %}" rel="stylesheet">
+
+  <script>
+    var all_days = {{ all_days | safe }}
+  </script>
+
+</head>
+
+<body>
+  <div id="monetus-box">
+    <h1 class="display-4">Valorização: {% if last_day_updated.vcp > 0 %} +{% endif %}{{ last_day_updated.vcp }}%</h1>
+    <p>Ultima atualização há {{ last_day_updated.time | timesince }}</p>
+
+  </div>
+
+
+  <div class="container">
+    <div class="my-5 pt-5 text-muted text-center text-small border-top">
+      <div id="container" style="min-width: 310px"></div>
+    </div>
+
+    Visualizar Ações:
+    <form>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_FIA" value="Monetus FIA" checked>Monetus FIA</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_NATU3" value="NATU3">NATU3 2</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_MDIA3" value="MDIA3">MDIA3</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_PIBB" value="PIBB">PIBB11</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_ABCB4" value="ABCB4">ABCB4</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_GRND3" value="GRND3">GRND3</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_CIEL3" value="CIEL3">CIEL3</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_CVB3" value="CVCB3">CVCB3</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_IVVB11" value="IVVB11">IVVB11</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_EZTC3" value="EZTC3">EZTC3</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_ESTC3" value="ESTC3">ESTC3</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_CGRA3" value="CGRA3">CGRA3</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_VVAR11" value="VVAR11">VVAR11</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_RAPT4" value="RAPT4">RAPT4</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_PTBL3" value="PTBL3">PTBL3</label>
+      <label class="checkbox-inline">
+        <input type="checkbox" onchange="toggleChart(this)" id="_SMLS3" value="SMLS3">SMLS3</label>
+    </form>
+
     <script>
-        var all_days = {{ all_days | safe }}
+      function toggleChart(element) {
+        element.check != element.checked;
+        selected_charts = []
+        if (document.getElementById("_FIA").checked) { selected_charts.push('Monetus FIA') }
+        if (document.getElementById("_NATU3").checked) { selected_charts.push('NATU3') }
+        if (document.getElementById("_MDIA3").checked) { selected_charts.push('MDIA3') }
+        if (document.getElementById("_PIBB").checked) { selected_charts.push('PIBB') }
+        if (document.getElementById("_ABCB4").checked) { selected_charts.push('ABCB4') }
+        if (document.getElementById("_GRND3").checked) { selected_charts.push('GRND3') }
+        if (document.getElementById("_CIEL3").checked) { selected_charts.push('CIEL3') }
+        if (document.getElementById("_CVB3").checked) { selected_charts.push('CVB3') }
+        if (document.getElementById("_IVVB11").checked) { selected_charts.push('IVVB11') }
+        if (document.getElementById("_EZTC3").checked) { selected_charts.push('EZTC3') }
+        if (document.getElementById("_ESTC3").checked) { selected_charts.push('ESTC3') }
+        if (document.getElementById("_CGRA3").checked) { selected_charts.push('CGRA3') }
+        if (document.getElementById("_VVAR11").checked) { selected_charts.push('VVAR11') }
+        if (document.getElementById("_RAPT4").checked) { selected_charts.push('RAPT4') }
+        if (document.getElementById("_PTBL3").checked) { selected_charts.push('PTBL3') }
+        if (document.getElementById("_SMLS3").checked) { selected_charts.push('SMLS3') }
+        console.log(selected_charts)
+        recreateChart(selected_charts);
+      }
     </script>
-    
-  </head>
+  </div>
 
-  <body>
-    <div id="monetus-box">
-          <h1 class="display-4">Valorização: {% if last_day_updated.vcp > 0 %} +{% endif %}{{ last_day_updated.vcp }}%</h1>
-          <p>Ultima atualização há {{ last_day_updated.time | timesince }}</p>
-          
+
+  <div class="container">
+
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+
+      <table class="table">
+        <tr>
+          <th>Código</th>
+          <th>Porcentagem no fundo</th>
+          <th>Valorização</th>
+        </tr>
+        {% for stockinst in last_stocks_updated %}
+        <tr>
+          <td>{{ stockinst.code }}</td>
+          <td>{{ stockinst.fshare }}</td>
+          <td style="font-weight: bold;color:{% if stockinst.vcp > 0 %} green {% else %} red {% endif %}">{% if stockinst.vcp > 0 %} +{% endif %}{{ stockinst.vcp }}% </td>
+        </tr>
+        {% endfor %}
+      </table>
     </div>
-    
-
-    <div class="container">
-        <div class="my-5 pt-5 text-muted text-center text-small border-top">
-            <div id="container" style="height: 400px; min-width: 310px"></div>
-          </div>
-    </div>
-
-    <div class="container">
-      
-        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        
-                        <table class="table">
-                            <tr>
-                              <th>Código</th>
-                                <th>Porcentagem no fundo</th>
-                                <th>Valorização</th>
-                            </tr>
-                            {% for stockinst in last_stocks_updated  %}
-                            <tr>
-                              <td>{{ stockinst.code }}</td>
-                              <td>{{ stockinst.fshare }}</td>
-                              <td style="font-weight: bold;color:{% if stockinst.vcp > 0 %} green {% else %} red {% endif %}">{% if stockinst.vcp > 0 %} +{% endif %}{{ stockinst.vcp }}% </td>
-                            </tr>
-                            {% endfor %}
-                          </table>
-        </div>
 
     <footer class="my-5 pt-5 text-muted text-center text-small border-top">
       <p>Esse site não tem vínculo com a empresa Monetus</p>
-      <p>Feito por <a href="https://github.com/alepmaros">Alexandre Maros</a> e <a href="https://github.com/Dayrell">Fábio Dayrell</a></p>
+      <p>Feito por
+        <a href="https://github.com/alepmaros">Alexandre Maros</a> e
+        <a href="https://github.com/Dayrell">Fábio Dayrell</a>
+      </p>
       <ul class="list-inline">
-        <li class="list-inline-item"><a href="https://github.com/alepmaros/monetus-fiavis">Código Fonte</a></li>
-        <li class="list-inline-item"><a href="http://monetus.com.br/">Monetus</a></li>
+        <li class="list-inline-item">
+          <a href="https://github.com/alepmaros/monetus-fiavis">Código Fonte</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="http://monetus.com.br/">Monetus</a>
+        </li>
       </ul>
     </footer>
-    
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
 
     <!-- chart -->
     {% include "fiavis/chart.html" %}
-  </body>
+</body>
+
 </html>

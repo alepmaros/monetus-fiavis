@@ -3,121 +3,138 @@
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 
 <script>
-function search(nameKey, myArray, date, vcp) {
-  for (var i = 0; i < myArray.length; i++) {
-    if (myArray[i].code == nameKey) {
-      myArray[i].series.push({
-        "date": d,
-        "vcp": vcp
-      })
-      return myArray
-    }
-  }
-  return 1;
-}
-function toTimestamp(strDate){
-   var datum = Date.parse(strDate);
-   return datum/1000;
-}
-
-var fiaData = [];
-var stocks = []
-var data = []
-
-all_days.forEach(element => {
-  d = new Date(element.day)
-  d.setHours(0, 0, 0, 0)
-  fiaData.push([(d).getTime(), element.vcp]);
-
-  element.stocks.forEach(stockslist => {
-    flag = search(stockslist.fields.code, stocks, d, stockslist.fields.vcp)
-    if (flag === 1) {
-      stocks.push({
-        "code": stockslist.fields.code,
-        "series": [{
+  function search(nameKey, myArray, date, vcp) {
+    for (var i = 0; i < myArray.length; i++) {
+      if (myArray[i].code == nameKey) {
+        myArray[i].series.push({
           "date": d,
-          "vcp": stockslist.fields.vcp
-        }]
-      })
-    } else {
-      stocks = flag
+          "vcp": vcp
+        })
+        return myArray
+      }
     }
-  })
-});
+    return 1;
+  }
 
-data.push({
-  "name": "Monetus FIA",
-  "data": fiaData
-})
+  function toTimestamp(strDate) {
+    var datum = Date.parse(strDate);
+    return datum / 1000;
+  }
 
-console.log(data)
-console.log('\n\n\n')
+  var fiaData = [];
+  var stocks = []
+  var data = []
 
-console.log(stocks)
+  all_days.forEach(element => {
+    d = new Date(element.day)
+    d.setHours(0, 0, 0, 0)
+    fiaData.push([(d).getTime(), element.vcp]);
 
-stocks.forEach(stock => {
-  var stockArray = []
-
-  stock.series.forEach(day => {
-    stockArray.push([(day.date).getTime(),day.vcp])
-  })
+    element.stocks.forEach(stockslist => {
+      flag = search(stockslist.fields.code, stocks, d, stockslist.fields.vcp)
+      if (flag === 1) {
+        stocks.push({
+          "code": stockslist.fields.code,
+          "series": [{
+            "date": d,
+            "vcp": stockslist.fields.vcp
+          }]
+        })
+      } else {
+        stocks = flag
+      }
+    })
+  });
 
   data.push({
-    "name": stock.code,
-    "data": stockArray
+    "name": "Monetus FIA",
+    "data": fiaData
   })
-})
 
-var seriesOptions = [],
+  stocks.forEach(stock => {
+    var stockArray = []
+
+    stock.series.forEach(day => {
+      stockArray.push([(day.date).getTime(), day.vcp])
+    })
+
+    data.push({
+      "name": stock.code,
+      "data": stockArray
+    })
+  })
+
+  var seriesOptions = [],
     seriesCounter = 0,
     names = ['Monetus FIA'];
 
-/**
- * Create the chart when all data is loaded
- * @returns {undefined}
- */
-function createChart() {
+  function recreateChart(selected_charts = ['Monetus FIA']) {
+    seriesOptions = [],
+      seriesCounter = 0,
+      names = ['Monetus FIA'];
+
+    data.forEach(element => {
+      if (selected_charts.includes(element.name)) {
+        console.log(element.name)
+        seriesOptions.push({
+          name: element.name,
+          data: element.data
+        })
+      }
+    })
+    createChart();
+  }
+
+  recreateChart();
+
+  /**
+   * Create the chart when all data is loaded
+   * @returns {undefined}
+   */
+  function createChart() {
 
     Highcharts.stockChart('container', {
+      chart: {
+        height: 600
+      },
 
-        rangeSelector: {
-            selected: 4
+      rangeSelector: {
+        selected: 4
+      },
+
+      yAxis: {
+        labels: {
+          formatter: function () {
+            return (this.value > 0 ? ' + ' : '') + this.value + '%';
+          }
         },
+        plotLines: [{
+          value: 0,
+          width: 2,
+          color: 'silver'
+        }]
+      },
 
-        yAxis: {
-            labels: {
-                formatter: function () {
-                    return (this.value > 0 ? ' + ' : '') + this.value + '%';
-                }
-            },
-            plotLines: [{
-                value: 0,
-                width: 2,
-                color: 'silver'
-            }]
-        },
+      tooltip: {
+        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}%</b><br/>',
+        valueDecimals: 2,
+        split: true
+      },
 
-        tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}%</b><br/>',
-            valueDecimals: 2,
-            split: true
-        },
-
-        series: seriesOptions
+      series: seriesOptions
     });
-}
-
-$.each(data, function (i, name) {
-
-  seriesOptions[i] = {
-      name: data[i].name,
-      data: data[i].data
-  };
-  seriesCounter += 1;
-
-  if (seriesCounter === data.length) {
-      createChart();
   }
-});
-</script>
 
+// $.each(data, function (i, name) {
+
+//   seriesOptions[i] = {
+//       name: data[i].name,
+//       data: data[i].data
+//   };
+//   seriesCounter += 1;
+
+//   if (seriesCounter === data.length) {
+//       createChart();
+//   }
+// });
+</script>

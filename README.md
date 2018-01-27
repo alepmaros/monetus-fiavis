@@ -4,7 +4,7 @@ Visualizador do Fundo de Investimento em Ações da Monetus
 
 Esse serviço não tem nenhum vínculo com a empresa Monetus.
 
-[alepmaros.me/monetus](alepmaros.me/monetus)
+[alepmaros.me/monetus](http://alepmaros.me/monetus)
 
 # Instruções:
 

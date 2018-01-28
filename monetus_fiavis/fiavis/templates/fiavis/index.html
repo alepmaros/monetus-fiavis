@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  {% include "fiavis/google_analytics.html" %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -9,10 +10,8 @@
 
   <title>Monetus FIA: Histórico (Não Oficial)</title>
 
-  <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <!-- Custom styles for this template -->
   {% load static %}
   <link href="{% static "fiavis/css/style.css" %}" rel="stylesheet">
 
@@ -151,7 +150,7 @@
         if (document.getElementById("_ABCB4").checked) { selected_charts.push('ABCB4') }
         if (document.getElementById("_GRND3").checked) { selected_charts.push('GRND3') }
         if (document.getElementById("_CIEL3").checked) { selected_charts.push('CIEL3') }
-        if (document.getElementById("_CVB3").checked) { selected_charts.push('CVB3') }
+        if (document.getElementById("_CVBC3").checked) { selected_charts.push('CVB3') }
         if (document.getElementById("_IVVB11").checked) { selected_charts.push('IVVB11') }
         if (document.getElementById("_EZTC3").checked) { selected_charts.push('EZTC3') }
         if (document.getElementById("_ESTC3").checked) { selected_charts.push('ESTC3') }
@@ -215,7 +214,7 @@
           <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="card-block">
               <p>Além desse site, existe um chatbot para o Facebook disponível para que os usuários da Monetus saibam a valorização das ações do fundo em tempo real sempre que quiserem.</p>
-              <p>Para conversar com o BOT é só acessar a seguinte página e iniciar uma conversa: <a target="" href="https://www.facebook.com/monetusbot/"></a></p>
+              <p>Para conversar com o BOT é só acessar a seguinte página e iniciar uma conversa: <a target="_blank" href="https://www.facebook.com/monetusbot/">https://www.facebook.com/monetusbot/</a></p>
             </div>
           </div>
         </div>

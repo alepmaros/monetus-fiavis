@@ -31,6 +31,17 @@
 
   <div class="container">
     <div class="my-5 pt-5 text-muted text-center text-small border-top">
+      <div class="form-check">
+          <div class="charttype">
+            <label class="control control--checkbox">
+                <input name="acumulado" type="radio" onchange="toggleChart(this)" id="_ACU" value="Acumulado" checked>Acumulado
+                <div class="control__indicator radio__indicador"></div>
+            </label>
+            <label class="control control--checkbox">
+                <input name="acumulado" type="radio" onchange="toggleChart(this)" id="_DIA" value="Diario">Diario
+                <div class="control__indicator radio__indicador"></div>
+            </label>
+          </div>
       <div id="container" style="min-width: 310px"></div>
     </div>
 
@@ -159,8 +170,9 @@
         if (document.getElementById("_RAPT4").checked) { selected_charts.push('RAPT4') }
         if (document.getElementById("_PTBL3").checked) { selected_charts.push('PTBL3') }
         if (document.getElementById("_SMLS3").checked) { selected_charts.push('SMLS3') }
-        console.log(selected_charts)
-        recreateChart(selected_charts);
+        if (document.getElementById("_ACU").checked) { acumulado = true }
+        if (document.getElementById("_DIA").checked) { acumulado = false }
+        recreateChart(selected_charts, acumulado);
       }
     </script>
   </div>

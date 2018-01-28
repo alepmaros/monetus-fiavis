@@ -21,14 +21,24 @@
     return datum / 1000;
   }
 
+  
+
+  var seriesOptions = [],
+    seriesCounter = 0,
+    names = ['Monetus FIA'];
+
+  function recreateChart(selected_charts = ['Monetus FIA'], acumulado = true) {
+
   var fiaData = [];
   var stocks = []
   var data = []
+  var totalvcp = 0
 
   all_days.forEach(element => {
     d = new Date(element.day)
     d.setHours(0, 0, 0, 0)
-    fiaData.push([(d).getTime(), element.vcp]);
+    totalvcp += element.vcp
+    fiaData.push([(d).getTime(), acumulado ? totalvcp : element.vcp]);
 
     element.stocks.forEach(stockslist => {
       flag = search(stockslist.fields.code, stocks, d, stockslist.fields.vcp)
@@ -53,9 +63,10 @@
 
   stocks.forEach(stock => {
     var stockArray = []
-
+    var totalvcp = 0
     stock.series.forEach(day => {
-      stockArray.push([(day.date).getTime(), day.vcp])
+      totalvcp += day.vcp
+      stockArray.push([(day.date).getTime(), acumulado ? totalvcp : day.vcp])
     })
 
     data.push({
@@ -63,19 +74,13 @@
       "data": stockArray
     })
   })
-
-  var seriesOptions = [],
-    seriesCounter = 0,
-    names = ['Monetus FIA'];
-
-  function recreateChart(selected_charts = ['Monetus FIA']) {
+    
     seriesOptions = [],
       seriesCounter = 0,
       names = ['Monetus FIA'];
 
     data.forEach(element => {
       if (selected_charts.includes(element.name)) {
-        console.log(element.name)
         seriesOptions.push({
           name: element.name,
           data: element.data
@@ -84,7 +89,7 @@
     })
     createChart();
   }
-
+  
   recreateChart();
 
   /**
@@ -92,7 +97,7 @@
    * @returns {undefined}
    */
   function createChart() {
-
+    
     Highcharts.stockChart('container', {
       chart: {
         height: 600

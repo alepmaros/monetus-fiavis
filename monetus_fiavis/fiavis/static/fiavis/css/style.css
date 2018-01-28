@@ -159,3 +159,12 @@ html {
 .control--radio input:disabled ~ .control__indicator:after {
 	background: #7b7b7b;
 }
+
+.radio__indicador {
+  border-radius: 80px;
+}
+
+.charttype {
+  max-width: 250px;
+  float: right;
+}

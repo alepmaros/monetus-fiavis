@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+  
+  {% include "fiavis/google_analytics.html" %}
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -9,10 +12,8 @@
 
   <title>Monetus FIA: Histórico (Não Oficial)</title>
 
-  <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <!-- Custom styles for this template -->
   {% load static %}
   <link href="{% static "fiavis/css/style.css" %}" rel="stylesheet">
 
@@ -137,7 +138,7 @@
             </label>
         </div>
         
-      </div>      
+      </div>
     </form>
 
     <script>
@@ -151,7 +152,7 @@
         if (document.getElementById("_ABCB4").checked) { selected_charts.push('ABCB4') }
         if (document.getElementById("_GRND3").checked) { selected_charts.push('GRND3') }
         if (document.getElementById("_CIEL3").checked) { selected_charts.push('CIEL3') }
-        if (document.getElementById("_CVB3").checked) { selected_charts.push('CVB3') }
+        if (document.getElementById("_CVBC3").checked) { selected_charts.push('CVCB3') }
         if (document.getElementById("_IVVB11").checked) { selected_charts.push('IVVB11') }
         if (document.getElementById("_EZTC3").checked) { selected_charts.push('EZTC3') }
         if (document.getElementById("_ESTC3").checked) { selected_charts.push('ESTC3') }
@@ -160,7 +161,6 @@
         if (document.getElementById("_RAPT4").checked) { selected_charts.push('RAPT4') }
         if (document.getElementById("_PTBL3").checked) { selected_charts.push('PTBL3') }
         if (document.getElementById("_SMLS3").checked) { selected_charts.push('SMLS3') }
-        console.log(selected_charts)
         recreateChart(selected_charts);
       }
     </script>

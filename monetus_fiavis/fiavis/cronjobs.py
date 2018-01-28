@@ -17,7 +17,7 @@ class UpdateStocksInformation(CronJobBase):
 
         time_now = datetime.now(tz=pytz.timezone("America/Sao_Paulo"))
 
-        if ( time_now.hour < 11 or time_now.hour > 19 or time_now.isoweekday() >= 6 ):
+        if ( time_now.hour < 10 or time_now.hour > 19 or time_now.isoweekday() >= 6 ):
             return
 
         try:
@@ -62,6 +62,7 @@ class UpdateStocksInformation(CronJobBase):
             for stock in Stock.objects.filter(day=day):
                 vcp += stock.vcp * (stock.fshare / 100.0)
 
-            day.vcp = vcp
+            # Probably should use Decimals here
+            day.vcp = float("{0:.2f}".format(round(vcp,2)))
             day.updated = True
             day.save()

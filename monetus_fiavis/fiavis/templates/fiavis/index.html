@@ -11,7 +11,9 @@
   <title>Monetus FIA: Histórico (Não Oficial)</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://code.highcharts.com/stock/highstock.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
   {% load static %}
   <link href="{% static "fiavis/css/style.css" %}" rel="stylesheet">
 
@@ -153,25 +155,25 @@
     <script>
       function toggleChart(element) {
         element.check != element.checked;
-        selected_charts = []
-        if (document.getElementById("_FIA").checked) { selected_charts.push('Monetus FIA') }
-        if (document.getElementById("_NATU3").checked) { selected_charts.push('NATU3') }
-        if (document.getElementById("_MDIA3").checked) { selected_charts.push('MDIA3') }
-        if (document.getElementById("_PIBB").checked) { selected_charts.push('PIBB') }
-        if (document.getElementById("_ABCB4").checked) { selected_charts.push('ABCB4') }
-        if (document.getElementById("_GRND3").checked) { selected_charts.push('GRND3') }
-        if (document.getElementById("_CIEL3").checked) { selected_charts.push('CIEL3') }
-        if (document.getElementById("_CVBC3").checked) { selected_charts.push('CVB3') }
-        if (document.getElementById("_IVVB11").checked) { selected_charts.push('IVVB11') }
-        if (document.getElementById("_EZTC3").checked) { selected_charts.push('EZTC3') }
-        if (document.getElementById("_ESTC3").checked) { selected_charts.push('ESTC3') }
-        if (document.getElementById("_CGRA3").checked) { selected_charts.push('CGRA3') }
-        if (document.getElementById("_VVAR11").checked) { selected_charts.push('VVAR11') }
-        if (document.getElementById("_RAPT4").checked) { selected_charts.push('RAPT4') }
-        if (document.getElementById("_PTBL3").checked) { selected_charts.push('PTBL3') }
-        if (document.getElementById("_SMLS3").checked) { selected_charts.push('SMLS3') }
-        if (document.getElementById("_ACU").checked) { acumulado = true }
-        if (document.getElementById("_DIA").checked) { acumulado = false }
+        selected_charts = [];
+        if (document.getElementById("_FIA").checked) { selected_charts.push('Monetus FIA'); }
+        if (document.getElementById("_NATU3").checked) { selected_charts.push('NATU3'); }
+        if (document.getElementById("_MDIA3").checked) { selected_charts.push('MDIA3'); }
+        if (document.getElementById("_PIBB").checked) { selected_charts.push('PIBB'); }
+        if (document.getElementById("_ABCB4").checked) { selected_charts.push('ABCB4'); }
+        if (document.getElementById("_GRND3").checked) { selected_charts.push('GRND3'); }
+        if (document.getElementById("_CIEL3").checked) { selected_charts.push('CIEL3'); }
+        if (document.getElementById("_CVBC3").checked) { selected_charts.push('CVB3'); }
+        if (document.getElementById("_IVVB11").checked) { selected_charts.push('IVVB11'); }
+        if (document.getElementById("_EZTC3").checked) { selected_charts.push('EZTC3'); }
+        if (document.getElementById("_ESTC3").checked) { selected_charts.push('ESTC3'); }
+        if (document.getElementById("_CGRA3").checked) { selected_charts.push('CGRA3'); }
+        if (document.getElementById("_VVAR11").checked) { selected_charts.push('VVAR11'); }
+        if (document.getElementById("_RAPT4").checked) { selected_charts.push('RAPT4'); }
+        if (document.getElementById("_PTBL3").checked) { selected_charts.push('PTBL3'); }
+        if (document.getElementById("_SMLS3").checked) { selected_charts.push('SMLS3'); }
+        if (document.getElementById("_ACU").checked) { acumulado = true; }
+        if (document.getElementById("_DIA").checked) { acumulado = false; }
         recreateChart(selected_charts, acumulado);
       }
     </script>

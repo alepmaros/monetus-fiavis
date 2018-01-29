@@ -34,6 +34,12 @@
   var data = []
   var totalvcp = 0
 
+  Highcharts.setOptions({
+    colors: ['#000000', '#FFBF00', '#A4C639', '#BD33A4', '#7FFFD4', '#2A52BE', '#B2BEB5', 
+             '#6D351A', '#007FFF', '#F4C2C2', '#734F96', '#004225', '#CD7F32', '#FBCEB1', 
+             '#4B5320', '#CD5B45', '#E32636']
+  });
+
   all_days.forEach(element => {
     d = new Date(element.day)
     d.setHours(0, 0, 0, 0)

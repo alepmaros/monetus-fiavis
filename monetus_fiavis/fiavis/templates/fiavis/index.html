@@ -155,25 +155,25 @@
     <script>
       function toggleChart(element) {
         element.check != element.checked;
-        selected_charts = [];
-        if (document.getElementById("_FIA").checked) { selected_charts.push('Monetus FIA'); }
-        if (document.getElementById("_NATU3").checked) { selected_charts.push('NATU3'); }
-        if (document.getElementById("_MDIA3").checked) { selected_charts.push('MDIA3'); }
-        if (document.getElementById("_PIBB").checked) { selected_charts.push('PIBB'); }
-        if (document.getElementById("_ABCB4").checked) { selected_charts.push('ABCB4'); }
-        if (document.getElementById("_GRND3").checked) { selected_charts.push('GRND3'); }
-        if (document.getElementById("_CIEL3").checked) { selected_charts.push('CIEL3'); }
-        if (document.getElementById("_CVBC3").checked) { selected_charts.push('CVB3'); }
-        if (document.getElementById("_IVVB11").checked) { selected_charts.push('IVVB11'); }
-        if (document.getElementById("_EZTC3").checked) { selected_charts.push('EZTC3'); }
-        if (document.getElementById("_ESTC3").checked) { selected_charts.push('ESTC3'); }
-        if (document.getElementById("_CGRA3").checked) { selected_charts.push('CGRA3'); }
-        if (document.getElementById("_VVAR11").checked) { selected_charts.push('VVAR11'); }
-        if (document.getElementById("_RAPT4").checked) { selected_charts.push('RAPT4'); }
-        if (document.getElementById("_PTBL3").checked) { selected_charts.push('PTBL3'); }
-        if (document.getElementById("_SMLS3").checked) { selected_charts.push('SMLS3'); }
-        if (document.getElementById("_ACU").checked) { acumulado = true; }
-        if (document.getElementById("_DIA").checked) { acumulado = false; }
+        selected_charts = []
+        if (document.getElementById("_FIA").checked) { selected_charts.push('Monetus FIA') }
+        if (document.getElementById("_NATU3").checked) { selected_charts.push('NATU3') }
+        if (document.getElementById("_MDIA3").checked) { selected_charts.push('MDIA3') }
+        if (document.getElementById("_PIBB").checked) { selected_charts.push('PIBB') }
+        if (document.getElementById("_ABCB4").checked) { selected_charts.push('ABCB4') }
+        if (document.getElementById("_GRND3").checked) { selected_charts.push('GRND3') }
+        if (document.getElementById("_CIEL3").checked) { selected_charts.push('CIEL3') }
+        if (document.getElementById("_CVCB3").checked) { selected_charts.push('CVCB3') }
+        if (document.getElementById("_IVVB11").checked) { selected_charts.push('IVVB11') }
+        if (document.getElementById("_EZTC3").checked) { selected_charts.push('EZTC3') }
+        if (document.getElementById("_ESTC3").checked) { selected_charts.push('ESTC3') }
+        if (document.getElementById("_CGRA3").checked) { selected_charts.push('CGRA3') }
+        if (document.getElementById("_VVAR11").checked) { selected_charts.push('VVAR11') }
+        if (document.getElementById("_RAPT4").checked) { selected_charts.push('RAPT4') }
+        if (document.getElementById("_PTBL3").checked) { selected_charts.push('PTBL3') }
+        if (document.getElementById("_SMLS3").checked) { selected_charts.push('SMLS3') }
+        if (document.getElementById("_ACU").checked) { acumulado = true }
+        if (document.getElementById("_DIA").checked) { acumulado = false }
         recreateChart(selected_charts, acumulado);
       }
     </script>

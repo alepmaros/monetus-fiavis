@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.core import serializers
-
+from django.http import HttpResponse
 from datetime import datetime
 import time
 import pytz, json
+import simplejson
 
 from .models import Stock, Day
 
@@ -28,3 +29,18 @@ def index_fiavis(request):
     return render(request, 'fiavis/index.html', {'all_days'   : json.dumps(all_days_object),
                                                  'last_stocks_updated'   : last_stocks_updated,
                                                  'last_day_updated'      : last_day_updated})
+
+
+def stocks(request):
+    
+    last_day_updated = Day.objects.filter(updated=True).order_by('-time')[0]
+    last_stocks_updated = Stock.objects.filter(day__time__startswith=last_day_updated.time.date())
+
+    data = serializers.serialize('json', last_stocks_updated)
+
+    stocks = {
+        'last_stocks_updated'   : json.loads(data),
+        'last_day_updated'      : str(last_day_updated)
+    }
+
+    return HttpResponse(json.dumps(stocks), content_type='application/json')

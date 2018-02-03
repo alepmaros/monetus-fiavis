@@ -19,6 +19,14 @@
 
   <script>
     var all_days = {{ all_days | safe }}
+
+    function refresh() {
+      setTimeout(function () {
+          location.reload()
+      }, 300000);
+    }
+
+    refresh()
   </script>
 
 </head>

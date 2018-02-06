@@ -34,7 +34,7 @@
 <body>
   <div id="monetus-box">
     <h1 class="display-4">Valorização: {% if last_day_updated.vcp > 0 %} +{% endif %}{{ last_day_updated.vcp }}%</h1>
-    <p>Ultima atualização há {{ last_day_updated.time | timesince }}</p>
+    <p>Ultima atualização há {{ last_day_updated.time | timesince }} ({{ last_day_updated.time | date:"d \d\e M à\s H:i" }})</p>
 
   </div>
 

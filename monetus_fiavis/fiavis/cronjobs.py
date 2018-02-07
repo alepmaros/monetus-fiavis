@@ -3,7 +3,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime
 import pytz
 
+
 from .utils.get_stocks import get_all_stocks
+from .utils.insert_all_stocks import insert_all_stocks
 
 from fiavis.models import Stock, Day
 
@@ -17,16 +19,17 @@ class UpdateStocksInformation(CronJobBase):
 
         time_now = datetime.now(tz=pytz.timezone("America/Sao_Paulo"))
 
-        if ( time_now.hour < 10 or time_now.hour >= 19 or time_now.isoweekday() >= 6 ):
+        if ( time_now.hour < 10 or time_now.hour >= 22 or time_now.isoweekday() >= 6 ):
             return
 
         try:
             day = Day.objects.get(time__startswith=time_now.date())
             day.time = time_now
+            day.save()
         except ObjectDoesNotExist:
             day = Day(time=time_now)
-        day.save()
-            
+            day.save()
+            insert_all_stocks(day)
 
         stocks = get_all_stocks()
         for s in stocks['stocks']:

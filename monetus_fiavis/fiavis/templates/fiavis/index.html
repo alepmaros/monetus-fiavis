@@ -251,7 +251,13 @@
           <tr>
             <td>{{ stockinst.code }}</td>
             <td>{{ stockinst.fshare }}</td>
-            <td style="font-weight: bold;color:{% if stockinst.vcp > 0 %} green {% else %} red {% endif %}">{% if stockinst.vcp > 0 %} +{% endif %}{{ stockinst.vcp }}% </td>
+            <td style="font-weight: bold;color:{% if stockinst.vcp > 0 %} green {% else %} red {% endif %}""
+                        {% if stockinst.vopen == 0 %} data-toggle='tooltip' data-placement='top' title='Houve um erro na tentativa de conseguir a valorização dessa ação (Possívelmente aparecerá no decorrer do dia)' {% endif %}">
+                {% if stockinst.vcp > 0 %} +{% endif %}{{ stockinst.vcp }} 
+                {% if stockinst.vopen == 0 %}
+                *
+                {% endif %}
+            </td>
           </tr>
           {% endfor %}
         </table>
@@ -273,6 +279,7 @@
               <p>Ao investir utilizando o Monetus, nós temos a curiosidade de saber como as ações que compõe o fundo estão valorizando no decorrer do dia. Após procurar várias soluções para atender a essa demanda, não encontramos nenhuma que fosse simples o suficiente. Além disso, gostamos de desenvolver!</p>
               <p>Disso veio a idéia de desenvolver esse site que mostra em tempo real a valorização das ações do Monetus FIA e, além disso, exibe como cada ação se valorizou nos dias anteriores.</p>
               <p>Por acreditar que essa é uma demanda de outros usuários do Monetus, resolvemos deixar o site aberto para todos e também o código do app desenvolvido em Django disponível no Github.</p>
+              <p>Um * ao lado de uma ação significa que houve um erro ao tentar conseguir a valorização daquela ação. O problema normalmente é da API da Google que utilizamos, e quando eles retornarem o valor correto, o mesmo será atualizado.</p>
               <p>{% include 'fiavis/donate.html' %}</p>
             </div>
           </div>
@@ -319,6 +326,13 @@
       crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"></script>
+
+    <script>
+        // Necessario para o tooltip do bootstrap funcionar
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 
     <!-- chart -->
     {% include "fiavis/chart.html" %}

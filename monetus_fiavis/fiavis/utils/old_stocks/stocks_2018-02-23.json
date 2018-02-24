@@ -1,0 +1,94 @@
+{
+    "stocks": [
+        {
+            "name": "Natura Cosmeticos SA",
+            "code": "NATU3",
+            "share": 12.09,
+            "info": "http://www.infomoney.com.br/natura-natu3"
+        },
+        {
+            "name": "M. Dias Branco SA Ind Com de Alimentos",
+            "code": "MDIA3",
+            "share": 11.81,
+            "info": "http://www.infomoney.com.br/mdiasbranco-mdia3"
+        },
+        {
+            "name": "PIBB11",
+            "code": "PIBB",
+            "share": 11.08,
+            "info": "http://www.infomoney.com.br/etfs-pibb11"
+        },
+        {
+            "name": "Banco ABC Brasil SA",
+            "code": "ABCB4",
+            "share": 8.77,
+            "info": "http://www.infomoney.com.br/bancoabcbrasil-abcb4"
+        },
+        {
+            "name": "Grendene SA",
+            "code": "GRND3",
+            "share": 7.69,
+            "info": "http://www.infomoney.com.br/grendene-grnd3"
+        },
+        {
+            "name": "Cielo SA",
+            "code": "CIEL3",
+            "share": 5.90,
+            "info": "http://www.infomoney.com.br/cielo-ciel3"
+        },
+        {
+            "name": "FUNDO DE INV ISHARES S&P 500 ETF",
+            "code": "CVCB3",
+            "share": 5.89,
+            "info": "http://www.infomoney.com.br/cvcbrasil-cvcb3"
+        },
+        {
+            "name": "",
+            "code": "IVVB11",
+            "share": 4.34,
+            "info": "http://www.infomoney.com.br/etfs-ivvb11"
+        },
+        {
+            "name": "EZTEC Empreendimentos e Participacoes SA",
+            "code": "EZTC3",
+            "share": 4.06,
+            "info": "http://www.infomoney.com.br/eztec-eztc3"
+        },
+        {
+            "name": "Estacio Participacoes SA",
+            "code": "ESTC3",
+            "share": 3.58,
+            "info": "http://www.infomoney.com.br/estaciopart-estc3"
+        },
+        {
+            "name": "Grazziotin SA",
+            "code": "CGRA3",
+            "share": 4.68,
+            "info": "http://www.infomoney.com.br/grazziotin-cgra3"
+        },
+        {
+            "name": "Via Varejo SA Brazilian Units",
+            "code": "VVAR11",
+            "share": 6.55,
+            "info": "http://www.infomoney.com.br/viavarejo-vvar11"
+        },
+        {
+            "name": "Randon SA Implementos e Participacoes Preference Shares",
+            "code": "RAPT4",
+            "share": 7.59,
+            "info": "http://www.infomoney.com.br/randonpart-rapt4"
+        },
+        {
+            "name": "PBG SA",
+            "code": "PTBL3",
+            "share": 4.65,
+            "info": "http://www.infomoney.com.br/pbg-ptbl3"
+        },
+        {
+            "name": "Smiles Fidelidade SA",
+            "code": "SMLS3",
+            "share": 1.32,
+            "info": "http://www.infomoney.com.br/smiles-smls3"
+        }
+    ]
+}

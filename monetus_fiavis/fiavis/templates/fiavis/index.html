@@ -161,6 +161,12 @@
                 <div class="control__indicator"></div>
             </label>
         </div>
+        <div class="col-md-2 col-sm-4 col-6" data-toggle='tooltip' data-placement='top' title='Smiles: É um dos maiores e mais tradicionais programas de fidelidade do país'>
+            <label class="control control--checkbox">
+                <input class="checkbox" type="checkbox" onchange="toggleChart(this)" id="_POMO4" value="POMO4">POMO4
+                <div class="control__indicator"></div>
+            </label>
+        </div>
         
       </div>      
     </form>
@@ -185,7 +191,8 @@
         if (document.getElementById("_RAPT4").checked) { selected_charts.push('RAPT4') }
         if (document.getElementById("_PTBL3").checked) { selected_charts.push('PTBL3') }
         if (document.getElementById("_SMLS3").checked) { selected_charts.push('SMLS3') }
-        if (document.getElementById("select_all").checked) { selected_charts.push('NATU3','MDIA3','PIBB','ABCB4','GRND3','CIEL3','CVCB3','IVVB11','EZTC3','ESTC3','CGRA3','VVAR11','RAPT4','PTBL3','SMLS3') }
+        if (document.getElementById("_POMO4").checked) { selected_charts.push('POMO4') }
+        if (document.getElementById("select_all").checked) { selected_charts.push('NATU3','MDIA3','PIBB','ABCB4','GRND3','CIEL3','CVCB3','IVVB11','EZTC3','ESTC3','CGRA3','VVAR11','RAPT4','PTBL3','SMLS3', 'POMO4') }
         if (document.getElementById("_ACU").checked) { acumulado = true }
         if (document.getElementById("_DIA").checked) { acumulado = false }
         

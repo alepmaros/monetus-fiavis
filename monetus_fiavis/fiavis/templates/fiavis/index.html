@@ -161,9 +161,15 @@
                 <div class="control__indicator"></div>
             </label>
         </div>
-        <div class="col-md-2 col-sm-4 col-6" data-toggle='tooltip' data-placement='top' title='Smiles: É um dos maiores e mais tradicionais programas de fidelidade do país'>
+        <div class="col-md-2 col-sm-4 col-6" data-toggle='tooltip' data-placement='top' title='Empresa líder do mercado brasileiro no segmento ônibus, ela posiciona-se entre as maiores fabricantes do mundo. Com fábricas nos cinco continentes, os veículos produzidos pela empresa rodam nas estradas de mais de cem países. (Ações preferenciais)'>
             <label class="control control--checkbox">
                 <input class="checkbox" type="checkbox" onchange="toggleChart(this)" id="_POMO4" value="POMO4">POMO4
+                <div class="control__indicator"></div>
+            </label>
+        </div>
+        <div class="col-md-2 col-sm-4 col-6" data-toggle='tooltip' data-placement='top' title='Empresa líder do mercado brasileiro no segmento ônibus, ela posiciona-se entre as maiores fabricantes do mundo. Com fábricas nos cinco continentes, os veículos produzidos pela empresa rodam nas estradas de mais de cem países. (Ações ordinárias)'>
+            <label class="control control--checkbox">
+                <input class="checkbox" type="checkbox" onchange="toggleChart(this)" id="_POMO3" value="POMO3">POMO3
                 <div class="control__indicator"></div>
             </label>
         </div>
@@ -192,7 +198,8 @@
         if (document.getElementById("_PTBL3").checked) { selected_charts.push('PTBL3') }
         if (document.getElementById("_SMLS3").checked) { selected_charts.push('SMLS3') }
         if (document.getElementById("_POMO4").checked) { selected_charts.push('POMO4') }
-        if (document.getElementById("select_all").checked) { selected_charts.push('NATU3','MDIA3','PIBB','ABCB4','GRND3','CIEL3','CVCB3','IVVB11','EZTC3','ESTC3','CGRA3','VVAR11','RAPT4','PTBL3','SMLS3', 'POMO4') }
+        if (document.getElementById("_POMO3").checked) { selected_charts.push('POMO3') }
+        if (document.getElementById("select_all").checked) { selected_charts.push('NATU3','MDIA3','PIBB','ABCB4','GRND3','CIEL3','CVCB3','IVVB11','EZTC3','ESTC3','CGRA3','VVAR11','RAPT4','PTBL3','SMLS3', 'POMO4', 'POMO3') }
         if (document.getElementById("_ACU").checked) { acumulado = true }
         if (document.getElementById("_DIA").checked) { acumulado = false }
         

@@ -37,9 +37,9 @@
             "info": "http://www.infomoney.com.br/grendene-grnd3"
         },
         {
-            "name": "Marcopolo",
-            "code": "POMO4",
-            "share": 6.49,
+            "name": "Marcopolo3",
+            "code": "POMO3",
+            "share": 3.80,
             "info": "http://www.infomoney.com.br/marcopolo-pomo4"
         },
         {
@@ -89,6 +89,12 @@
             "code": "ESTC3",
             "share": 3.20,
             "info": "http://www.infomoney.com.br/estaciopart-estc3"
+        },
+        {
+            "name": "Marcopolo4",
+            "code": "POMO4",
+            "share": 2.09,
+            "info": "http://www.infomoney.com.br/marcopolo-pomo4"
         },
         {
             "name": "Smiles Fidelidade SA",

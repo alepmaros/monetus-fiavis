@@ -37,22 +37,10 @@
             "info": "http://www.infomoney.com.br/grendene-grnd3"
         },
         {
-            "name": "Marcopolo3",
-            "code": "POMO3",
-            "share": 3.80,
-            "info": "http://www.infomoney.com.br/marcopolo-pomo4"
-        },
-        {
             "name": "Via Varejo SA Brazilian Units",
             "code": "VVAR11",
             "share": 6.32,
             "info": "http://www.infomoney.com.br/viavarejo-vvar11"
-        },
-        {
-            "name": "Grazziotin SA",
-            "code": "CGRA3",
-            "share": 5.89,
-            "info": "http://www.infomoney.com.br/grazziotin-cgra3"
         },
         {
             "name": "FUNDO DE INV ISHARES S&P 500 ETF",
@@ -73,10 +61,22 @@
             "info": "http://www.infomoney.com.br/pbg-ptbl3"
         },
         {
+            "name": "Grazziotin SA 4",
+            "code": "CGRA4",
+            "share": 3.91,
+            "info": "http://www.infomoney.com.br/grazziotin-cgra3"
+        },
+        {
             "name": "iShares S&P 500",
             "code": "IVVB11",
             "share": 3.89,
             "info": "http://www.infomoney.com.br/etfs-ivvb11"
+        },
+        {
+            "name": "Marcopolo3",
+            "code": "POMO3",
+            "share": 3.80,
+            "info": "http://www.infomoney.com.br/marcopolo-pomo4"
         },
         {
             "name": "EZTEC Empreendimentos e Participacoes SA",
@@ -89,6 +89,12 @@
             "code": "ESTC3",
             "share": 3.20,
             "info": "http://www.infomoney.com.br/estaciopart-estc3"
+        },
+        {
+            "name": "Grazziotin SA",
+            "code": "CGRA3",
+            "share": 2.58,
+            "info": "http://www.infomoney.com.br/grazziotin-cgra3"
         },
         {
             "name": "Marcopolo4",

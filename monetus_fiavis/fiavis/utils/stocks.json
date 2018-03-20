@@ -1,111 +1,111 @@
 {
     "stocks": [
         {
-            "name": "M. Dias Branco SA Ind Com de Alimentos",
-            "code": "MDIA3",
-            "share": 11.14,
-            "info": "http://www.infomoney.com.br/mdiasbranco-mdia3"
-        },
-        {
             "name": "Natura Cosmeticos SA",
             "code": "NATU3",
-            "share": 10.98,
+            "share": 15.96,
             "info": "http://www.infomoney.com.br/natura-natu3"
+        },
+        {
+            "name": "M. Dias Branco SA Ind Com de Alimentos",
+            "code": "MDIA3",
+            "share": 9.63,
+            "info": "http://www.infomoney.com.br/mdiasbranco-mdia3"
         },
         {
             "name": "PIBB11",
             "code": "PIBB",
-            "share": 10.05,
+            "share": 9.56,
             "info": "http://www.infomoney.com.br/etfs-pibb11"
         },
         {
             "name": "Banco ABC Brasil SA",
             "code": "ABCB4",
-            "share": 8.42,
+            "share": 7.64,
             "info": "http://www.infomoney.com.br/bancoabcbrasil-abcb4"
         },
         {
             "name": "Randon SA Implementos e Participacoes Preference Shares",
             "code": "RAPT4",
-            "share": 7.18,
+            "share": 6.72,
             "info": "http://www.infomoney.com.br/randonpart-rapt4"
         },
         {
             "name": "Grendene SA",
             "code": "GRND3",
-            "share": 6.90,
+            "share": 6.23,
             "info": "http://www.infomoney.com.br/grendene-grnd3"
         },
         {
             "name": "Via Varejo SA Brazilian Units",
             "code": "VVAR11",
-            "share": 6.32,
+            "share": 6.23,
             "info": "http://www.infomoney.com.br/viavarejo-vvar11"
         },
         {
-            "name": "FUNDO DE INV ISHARES S&P 500 ETF",
+            "name": "CVC Brasil",
             "code": "CVCB3",
-            "share": 5.25,
+            "share": 5.23,
             "info": "http://www.infomoney.com.br/cvcbrasil-cvcb3"
         },
         {
             "name": "Cielo SA",
             "code": "CIEL3",
-            "share": 5.20,
+            "share": 4.80,
             "info": "http://www.infomoney.com.br/cielo-ciel3"
         },
         {
             "name": "Portobello",
             "code": "PTBL3",
-            "share": 4.23,
+            "share": 4.17,
             "info": "http://www.infomoney.com.br/pbg-ptbl3"
-        },
-        {
-            "name": "Grazziotin SA 4",
-            "code": "CGRA4",
-            "share": 3.91,
-            "info": "http://www.infomoney.com.br/grazziotin-cgra3"
         },
         {
             "name": "iShares S&P 500",
             "code": "IVVB11",
-            "share": 3.89,
+            "share": 3.88,
             "info": "http://www.infomoney.com.br/etfs-ivvb11"
         },
         {
-            "name": "Marcopolo3",
-            "code": "POMO3",
+            "name": "Marcopolo4",
+            "code": "POMO4",
             "share": 3.80,
             "info": "http://www.infomoney.com.br/marcopolo-pomo4"
         },
         {
+            "name": "Grazziotin SA 4",
+            "code": "CGRA4",
+            "share": 3.76,
+            "info": "http://www.infomoney.com.br/grazziotin-cgra3"
+        },
+        {
             "name": "EZTEC Empreendimentos e Participacoes SA",
             "code": "EZTC3",
-            "share": 3.66,
+            "share": 3.53,
             "info": "http://www.infomoney.com.br/eztec-eztc3"
         },
         {
             "name": "Estacio Participacoes SA",
             "code": "ESTC3",
-            "share": 3.20,
+            "share": 3.36,
             "info": "http://www.infomoney.com.br/estaciopart-estc3"
+        },
+        {
+            "name": "Marcopolo3",
+            "code": "POMO3",
+            "share": 2.51,
+            "info": "http://www.infomoney.com.br/marcopolo-pomo4"
         },
         {
             "name": "Grazziotin SA",
             "code": "CGRA3",
-            "share": 2.58,
+            "share": 1.98,
             "info": "http://www.infomoney.com.br/grazziotin-cgra3"
-        },
-        {
-            "name": "Marcopolo4",
-            "code": "POMO4",
-            "share": 2.09,
-            "info": "http://www.infomoney.com.br/marcopolo-pomo4"
         },
         {
             "name": "Smiles Fidelidade SA",
             "code": "SMLS3",
-            "share": 1.20,
+            "share": 1.01,
             "info": "http://www.infomoney.com.br/smiles-smls3"
         }
     ]

@@ -12,3 +12,8 @@ Esse serviço não tem nenhum vínculo com a empresa Monetus.
 - python3 manage.py makemigrations
 - python3 manage.py migrate
 - python3 manage.py runserver
+
+# TO-DO
+
+- [ ] Adicionar IBOVESPA e outros indces (BRAX11, etc)
+- [ ] Refatorar Código do front end p/ deixar dinâmico 

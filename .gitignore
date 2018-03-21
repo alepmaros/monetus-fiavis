@@ -107,3 +107,5 @@ monetus_fiavis/fiavis/migrations/*.py
 !monetus_fiavis/fiavis/migrations/__init__.py
 
 .vscode/
+
+monetus_fiavis/fiavis/utils/config.py

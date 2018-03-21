@@ -1,6 +1,7 @@
-import json, requests, simplejson
-import os
+import json, requests, simplejson, os, time, config
 from pprint import pprint
+from alpha_vantage.timeseries import TimeSeries
+import urllib.request
 
 def get_all_stocks():
     f = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,31 +15,27 @@ def get_all_stocks():
     return (companies)
 
 # valid: 0 caso seja um retorno válido
-# valid: 1 caso algum atributo do objeto
-# valid: 2 caso haja uma falha na API
+# valid: 1 caso haja uma falha na API
 def get_company_status(company):
-    rsp = requests.get('https://finance.google.com/finance?q=' + company + '&output=json')
-
-    if (rsp.status_code == 200):
-        try:
-            company_data = json.loads(rsp.content[6:-2].decode('unicode_escape'))
-
-            response = {
-                'valid': 0,
-                'cp': float(company_data['cp']),
-                'l': float(company_data['l']),
-                'op': float(company_data['op']),
-                'hi': float(company_data['hi']),
-                'lo': float(company_data['lo'])
-            }
-
-        except:
-            response = {
-                'valid': 1
-            }
-    else:
+    print(company)
+    try:
+        ts = TimeSeries(key = config.api_key)
+        data, meta_data = ts.get_daily(company + '.SA')
+        today = time.strftime("%Y-%m-%d")
+        print(data[today])
         response = {
-            'valid': 2
+            'valid': 0,
+            'cp': (float(data[today]['1. open']) * 100 / float(data[today]['4. close'])) - 100,
+            'op': float(data[today]['1. open']),
+            'hi': float(data[today]['2. high']),
+            'lo': float(data[today]['3. low']),
+            'l': float(data[today]['4. close'])
+        }
+
+    except:
+        response = {
+            'valid': 1
         }
     
     return response
+print(get_all_stocks())

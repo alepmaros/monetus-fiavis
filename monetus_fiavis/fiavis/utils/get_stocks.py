@@ -25,7 +25,7 @@ def get_company_status(company):
         print(data[today])
         response = {
             'valid': 0,
-            'cp': (float(data[today]['1. open']) * 100 / float(data[today]['4. close'])) - 100,
+            'cp': (float(data[today]['4. close']) * 100 / float(data[today]['1. open'])) - 100,
             'op': float(data[today]['1. open']),
             'hi': float(data[today]['2. high']),
             'lo': float(data[today]['3. low']),
@@ -38,3 +38,4 @@ def get_company_status(company):
         }
     
     return response
+print(get_all_stocks())

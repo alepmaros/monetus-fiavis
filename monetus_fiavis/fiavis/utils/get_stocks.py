@@ -23,7 +23,7 @@ def get_company_status(company):
 
         response = {
             'valid': 0,
-            'cp': float("{0:.2f}".format(((float(data[today]['4. close']) * 100 / float(data[today]['1. open'])) - 100.0)),
+            'cp': float("{0:.2f}".format(((float(data[today]['4. close']) * 100 / float(data[today]['1. open'])) - 100.0))),
             'op': float(data[today]['1. open']),
             'hi': float(data[today]['2. high']),
             'lo': float(data[today]['3. low']),

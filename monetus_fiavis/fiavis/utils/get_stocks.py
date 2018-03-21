@@ -1,4 +1,4 @@
-import json, requests, simplejson, os, time, config
+import json, requests, simplejson, os, time
 from alpha_vantage.timeseries import TimeSeries
 import urllib.request
 
@@ -17,7 +17,7 @@ def get_all_stocks():
 # valid: 1 caso haja uma falha na API
 def get_company_status(company):
     try:
-        ts = TimeSeries(key = config.api_key)
+        ts = TimeSeries(key=os.environ['ALPHA_KEY'])
         data, meta_data = ts.get_daily(company + '.SA')
         today = time.strftime("%Y-%m-%d")
 

@@ -38,4 +38,3 @@ def get_company_status(company):
         }
     
     return response
-print(get_all_stocks())

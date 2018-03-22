@@ -1,4 +1,5 @@
-import json, requests, simplejson, os, time
+import json, requests, simplejson, os
+from datetime import datetime, timedelta
 from alpha_vantage.timeseries import TimeSeries
 import urllib.request
 
@@ -19,11 +20,11 @@ def get_company_status(company):
     try:
         ts = TimeSeries(key=os.environ['ALPHA_KEY'])
         data, meta_data = ts.get_daily(company + '.SA')
-        today = time.strftime("%Y-%m-%d")
-
+        today = datetime.strftime(datetime.now(), '%Y-%m-%d')
+        yesterday = datetime.strftime(datetime.now() - timedelta(1), '%Y-%m-%d')
         response = {
             'valid': 0,
-            'cp': float("{0:.2f}".format(((float(data[today]['4. close']) * 100 / float(data[today]['1. open'])) - 100.0))),
+            'cp': float("{0:.3f}".format(((float(data[today]['4. close']) * 100 / float(data[yesterday]['4. close'])) - 100.0))),
             'op': float(data[today]['1. open']),
             'hi': float(data[today]['2. high']),
             'lo': float(data[today]['3. low']),
@@ -34,5 +35,5 @@ def get_company_status(company):
         response = {
             'valid': 1
         }
-    
+
     return response

@@ -21,11 +21,16 @@ def get_company_status(company):
     try:
         ts = TimeSeries(key=os.environ['ALPHA_KEY'])
         data, meta_data = ts.get_daily(company + '.SA')
-        today = datetime.strftime(datetime.now(tz=pytz.timezone("America/Sao_Paulo"), '%Y-%m-%d')
-        yesterday = datetime.strftime(datetime.now(tz=pytz.timezone("America/Sao_Paulo") - timedelta(1), '%Y-%m-%d')
+        today = datetime.strftime(datetime.now(tz=pytz.timezone("America/Sao_Paulo")), '%Y-%m-%d')
+
+        if date.today().weekday() == 0:
+            last_day = datetime.strftime(datetime.now(tz=pytz.timezone("America/Sao_Paulo")) - timedelta(3), '%Y-%m-%d')
+        else:
+            last_day = datetime.strftime(datetime.now(tz=pytz.timezone("America/Sao_Paulo")) - timedelta(1), '%Y-%m-%d')
+        
         response = {
             'valid': 0,
-            'cp': float("{0:.2f}".format(((float(data[today]['4. close']) * 100 / float(data[yesterday]['4. close'])) - 100.0))),
+            'cp': float("{0:.2f}".format(((float(data[today]['4. close']) * 100 / float(data[last_day]['4. close'])) - 100.0))),
             'op': float(data[today]['1. open']),
             'hi': float(data[today]['2. high']),
             'lo': float(data[today]['3. low']),

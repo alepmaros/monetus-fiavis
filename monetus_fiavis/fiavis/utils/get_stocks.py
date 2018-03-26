@@ -22,10 +22,7 @@ def get_company_status(company):
         ts = TimeSeries(key=os.environ['ALPHA_KEY'])
         data, meta_data = ts.get_daily(company + '.SA')
         today = datetime.strftime(datetime.now(tz=pytz.timezone("America/Sao_Paulo"), '%Y-%m-%d')
-        if date.today().weekday() == 0:
-            yesterday = datetime.strftime(datetime.now(tz=pytz.timezone("America/Sao_Paulo") - timedelta(3), '%Y-%m-%d')
-        else:
-            yesterday = datetime.strftime(datetime.now(tz=pytz.timezone("America/Sao_Paulo") - timedelta(1), '%Y-%m-%d')
+        yesterday = datetime.strftime(datetime.now(tz=pytz.timezone("America/Sao_Paulo") - timedelta(1), '%Y-%m-%d')
         response = {
             'valid': 0,
             'cp': float("{0:.2f}".format(((float(data[today]['4. close']) * 100 / float(data[yesterday]['4. close'])) - 100.0))),
